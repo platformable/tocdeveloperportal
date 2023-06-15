@@ -209,7 +209,7 @@ export default function NavbarTop({ children }: any) {
     <div className={classes.root}>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <Link href="/settings">
+         {/*  <Link href="/settings">
             <IconButton
               edge="start"
               className={classes.menuButton}
@@ -218,19 +218,29 @@ export default function NavbarTop({ children }: any) {
             >
               <SettingsIcon />
             </IconButton>
-          </Link>
+          </Link> */}
 
-          <IconButton
+         {/*  <IconButton
             edge="start"
             className={classes.menuButton}
             color="default"
             aria-label="open drawer"
           >
             <HomeIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             <Link href="/" color="textPrimary" underline="none">
-              WIPO Developer Portal
+              <div style={{'display':'flex'}}>
+            <svg
+      
+      style={{'maxWidth':'120','marginRight':'10'}}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 121 24"
+    >
+     <path  d="M0.113281 0.634895H6.48687L11.0216 17.1903H11.089L15.8846 0.634895H22.261L27.0559 17.1903H27.1205L31.6546 0.634895H38.028L30.6049 23.3651H24.0346L19.1048 7.18971H19.0402L14.1104 23.3651H7.53703L0.113281 0.634895Z"></path><path d="M44.4075 0.634895H50.7834V23.3651H44.4075V0.634895Z"></path><path d="M66.5548 11.1043H73.3888C75.3626 11.1043 77.659 11.0384 77.659 7.98747C77.659 5.02531 75.789 4.77491 73.9808 4.77491H66.5548V11.1043ZM60.1781 0.634895H75.9518C82.6202 0.634895 84.2318 4.48359 84.2318 7.54131C84.2318 12.3766 81.6034 15.2445 76.4464 15.2445H66.5548V23.3651H60.1781V0.634895Z"></path><path d="M105.526 19.6643C111.309 19.6643 113.344 15.53 113.344 11.9965C113.344 8.46431 111.309 4.32315 105.526 4.32315C99.7444 4.32315 97.706 8.46431 97.706 11.9965C97.706 15.53 99.7444 19.6643 105.526 19.6643ZM105.526 0C118.143 0 120.113 7.25581 120.113 11.9965C120.113 16.7431 118.143 24 105.526 24C92.9076 24 90.9366 16.7431 90.9366 11.9965C90.9366 7.25581 92.9076 0 105.526 0Z"></path>
+    </svg>
+              Developer Portal
+              </div>
             </Link>
           </Typography>
 
