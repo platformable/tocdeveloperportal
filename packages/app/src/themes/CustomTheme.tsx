@@ -8,7 +8,10 @@ const createCustomThemeOverrides = (
       BackstageHeader: {
         header: {
           width: 'auto',
+          backgroundColor: '#002ec1b0',
           backgroundImage: `url('/hero-bg.jpg')`,
+          backgroundBlendMode: 'luminosity'
+
         },
       },
     };
