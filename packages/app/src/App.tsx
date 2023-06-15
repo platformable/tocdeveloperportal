@@ -35,7 +35,8 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import NavbarTop from './components/layout/NavbarTop/NavbarTop';
 import HomePage from './components/home/HomePage';
-
+import { ThemeProvider, CssBaseline } from '@material-ui/core';
+import { customTheme } from './themes/CustomTheme';
 
 const app = createApp({
   apis,
@@ -54,6 +55,19 @@ const app = createApp({
       catalogIndex: catalogPlugin.routes.catalogIndex,
     });
   },
+  themes: [
+    {
+      id: 'my-theme',
+      title: 'My Custom Theme',
+      variant: 'dark',
+      Provider: ({ children }) => (
+        <ThemeProvider theme={customTheme}>
+          <CssBaseline>{children}</CssBaseline>
+        </ThemeProvider>
+      ),
+    },
+   
+  ],
 });
 
 const routes = (
