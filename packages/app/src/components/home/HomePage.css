@@ -1,0 +1,25 @@
+.hero {
+    height: 50vh;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgb(0, 0, 0)),url('../../../public/hero-bg.jpg');
+    background-position: 40% 20%;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    color: white;
+    font-weight: bolder;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero h1 {
+    font-size: 60px;
+
+}
+.hero > div > div > div {
+    background-color: white;
+}
+@media (max-width: 765px) {
+    .hero{
+        display: none;
+    }
+}
