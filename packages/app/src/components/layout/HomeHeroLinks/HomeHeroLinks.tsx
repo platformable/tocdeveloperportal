@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       height: 140,
       width: '100%',
-      color: 'white',
+      color: 'black',
       padding: '2.25rem',
       borderRadius: '10px',
-      backgroundColor: '#2d1d86',
+      // backgroundColor: '#2d1d86',
       textAlign: 'center',
       display: "flex",
       alignItems: 'center',
