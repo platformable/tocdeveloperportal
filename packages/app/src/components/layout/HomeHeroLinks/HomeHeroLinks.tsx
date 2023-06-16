@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       height: 140,
       width: '100%',
-      color: 'black',
-      padding: '1,5rem 2.25rem',
-      borderRadius: '10px 50px 10px 50px',
-      backgroundColor: '#f0f0f0',
+      color: 'white',
+      padding: '2.25rem',
+      borderRadius: '10px',
+      backgroundColor: '#2d1d86',
       textAlign: 'center',
       display: "flex",
       alignItems: 'center',
@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+
 const links = [
     {icon: '/docs.svg', href: '/docs', text: 'Docs'},
     {icon: '/api.svg', href: '/api-docs', text: 'API'},
@@ -46,7 +48,7 @@ export default function HomeHeroLinks() {
               <Link to={value.href}>
               <Paper className={classes.paper} >
                 {/* <img src={value.icon} alt="icon"/> */}
-                <img src={value.icon} alt={`${value.text} icon`} width={70}/>
+                <img src={value.icon} alt={`${value.text} icon`} style={{paddingTop:20}} width={70}/>
                 <h3>{value.text}</h3>
               </Paper>
               </Link>
