@@ -16,11 +16,18 @@ backend:
   # config options: https://node-postgres.com/api/client
   database:
     client: pg
+    pluginDivisionMode: schema
     connection:
-      host: ${POSTGRES_HOST}
-      port: ${POSTGRES_PORT}
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
+      database: wipobackstage
+      host: dpg-ci5coldgkuvgpf8fiaj0-a.oregon-postgres.render.com
+      port: 5432
+      user: admin
+      password: 'nCEDR13uyXNEp1aN8yzjRlhCGJdyI1gO'
+      ssl: true
+    plugin:
+      auth:
+        connection:
+          database: wipobackstage
       # https://node-postgres.com/features/ssl
       # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
       # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
@@ -29,7 +36,13 @@ backend:
       #     $file: <file-path>/ca/server.crt
 
 catalog:
-  # Overrides the default list locations from app-config.yaml as these contain example data.
-  # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
-  # on how to get entities into the catalog.
-  locations: []
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location]
+  locations:
+    - type: file
+      target: ../../templates/docsTemplate/template.yaml
+      rules:
+        - allow: [Template]
