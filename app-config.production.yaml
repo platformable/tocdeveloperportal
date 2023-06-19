@@ -18,16 +18,16 @@ backend:
     client: pg
     pluginDivisionMode: schema
     connection:
-      database: wipobackstage
-      host: dpg-ci5coldgkuvgpf8fiaj0-a.oregon-postgres.render.com
+      database: ${POSTGRES_DATABASE}
+      host: ${POSTGRES_HOST}
       port: 5432
-      user: admin
-      password: 'AqtDd7ajGgrgFkQ8yHKdHBYaPwNAmDtD'
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
       ssl: true
     plugin:
       auth:
         connection:
-          database: wipobackstage
+          database: ${POSTGRES_DATABASE}
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
   # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
