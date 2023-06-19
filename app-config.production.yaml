@@ -18,16 +18,16 @@ backend:
     client: pg
     pluginDivisionMode: schema
     connection:
-      database: wipobackstage
-      host: dpg-ci5coldgkuvgpf8fiaj0-a.oregon-postgres.render.com
+      database: ${POSTGRES_DATABASE}
+      host: ${POSTGRES_HOST}
       port: 5432
-      user: admin
-      password: 'AqtDd7ajGgrgFkQ8yHKdHBYaPwNAmDtD'
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
       ssl: true
     plugin:
       auth:
         connection:
-          database: wipobackstage
+          database: ${POSTGRES_DATABASE}
       # https://node-postgres.com/features/ssl
       # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
       # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
