@@ -22,7 +22,7 @@ backend:
       host: dpg-ci5coldgkuvgpf8fiaj0-a.oregon-postgres.render.com
       port: 5432
       user: admin
-      password: 'nCEDR13uyXNEp1aN8yzjRlhCGJdyI1gO'
+      password: 'AqtDd7ajGgrgFkQ8yHKdHBYaPwNAmDtD'
       ssl: true
     plugin:
       auth:
