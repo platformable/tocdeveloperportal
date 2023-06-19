@@ -12,7 +12,7 @@ export default function HomePage() {
     return (
       <main className="main-home">
         <div className="hero">
-          <h1>WIPO Developer Portal</h1>
+          <h1>Developer Portal</h1>
           <Container>
             <HomePageSearchBar color="secondary"/>
           </Container>
