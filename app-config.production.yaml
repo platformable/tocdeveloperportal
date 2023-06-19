@@ -28,7 +28,6 @@ backend:
       auth:
         connection:
           database: wipobackstage
-<<<<<<< HEAD
       # https://node-postgres.com/features/ssl
       # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
       # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
@@ -43,13 +42,6 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location]
   locations:
-=======
-catalog:
-  # Overrides the default list locations from app-config.yaml as these contain example data.
-  # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
-  # on how to get entities into the catalog.
-  locations: 
->>>>>>> bdeeaa8c4b7d304f3cbdea16b5fba2a06207f096
     - type: file
       target: ../../templates/docsTemplate/template.yaml
       rules:
