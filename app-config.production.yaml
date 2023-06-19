@@ -29,10 +29,12 @@ backend:
         connection:
           database: ${POSTGRES_DATABASE}
 catalog:
-  # Overrides the default list locations from app-config.yaml as these contain example data.
-  # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
-  # on how to get entities into the catalog.
-  locations: 
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location]
+  locations:
     - type: file
       target: ../../templates/docsTemplate/template.yaml
       rules:
