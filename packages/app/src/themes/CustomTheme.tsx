@@ -14,6 +14,11 @@ const createCustomThemeOverrides = (
 
         },
       },
+      BackstagePage: {
+        root: {
+          overflowY: "none"
+        }
+      }
     };
   };
 export  const customTheme: BackstageTheme = {

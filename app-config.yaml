@@ -34,16 +34,16 @@ backend:
     client: pg
     pluginDivisionMode: schema
     connection:
-      database: tocportaldb
-      host: dpg-ci8o05enqql0ldd2pdc0-a.oregon-postgres.render.com
-      port: 5432
-      user: tocportaldbuser
-      password: 'RcAPBd7kMt0VCPA3xQZMnmkLWAEGGSNK'
+      database: ${POSTGRES_DATABASE}
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
       ssl: true
     plugin:
       auth:
         connection:
-          database: tocportaldb
+          database: ${POSTGRES_DATABASE}
     knexConfig:
       pool:
         min: 3
