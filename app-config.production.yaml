@@ -39,3 +39,9 @@ catalog:
       target: ../../templates/docsTemplate/template.yaml
       rules:
         - allow: [Template]
+techdocs:
+  builder: 'local' # Alternatives - 'external'
+  generator:
+    runIn: 'local' # Alternatives - 'local'
+  publisher:
+    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
