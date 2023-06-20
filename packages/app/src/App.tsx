@@ -122,8 +122,9 @@ export default app.createRoot(
   <>
     <AlertDisplay />
     <OAuthRequestDialog />
-    <NavbarTop />
     <AppRouter>
+      <NavbarTop />
+
       <Root>{routes}</Root>
     </AppRouter>
   </>,
