@@ -29,19 +29,27 @@ backend:
   # The production database configuration is stored in app-config.production.yaml
 
   database:
+    # client: better-sqlite3
+    # connection: ':memory:'
     client: pg
     pluginDivisionMode: schema
     connection:
-      database: ${POSTGRES_DATABASE}
-      host: ${POSTGRES_HOST}
+      database: tocportaldb
+      host: dpg-ci8o05enqql0ldd2pdc0-a.oregon-postgres.render.com
       port: 5432
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
+      user: tocportaldbuser
+      password: 'RcAPBd7kMt0VCPA3xQZMnmkLWAEGGSNK'
       ssl: true
     plugin:
       auth:
         connection:
-          database: ${POSTGRES_DATABASE}
+          database: tocportaldb
+    knexConfig:
+      pool:
+        min: 3
+        max: 12
+        acquireTimeoutMillis: 60000
+        idleTimeoutMillis: 60000
   cache:
     store: memory
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir

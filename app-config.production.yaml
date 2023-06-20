@@ -20,7 +20,7 @@ backend:
     connection:
       database: ${POSTGRES_DATABASE}
       host: ${POSTGRES_HOST}
-      port: 5432
+      port: ${POSTGRES_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
       ssl: true
@@ -39,3 +39,9 @@ catalog:
       target: ../../templates/docsTemplate/template.yaml
       rules:
         - allow: [Template]
+techdocs:
+  builder: 'local' # Alternatives - 'external'
+  generator:
+    runIn: 'local' # Alternatives - 'local'
+  publisher:
+    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
