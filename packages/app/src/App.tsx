@@ -38,6 +38,9 @@ import HomePage from './components/home/HomePage';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import { customTheme } from './themes/CustomTheme';
 
+import ApiTools from './pages/apitools'
+import ApiToolsPage from './pages/apitools/ApiToolsPage'
+
 const app = createApp({
   apis,
   bindRoutes({ bind }) {
@@ -81,6 +84,8 @@ const routes = (
     />
     {/* <Route path="/" element={<Navigate to="catalog" />} /> */}
     <Route path="/catalog" element={<CatalogIndexPage />} />
+    <Route path="/apitools" element={<ApiTools />} />
+    <Route path="/apitools/tool/:companyName" element={<ApiToolsPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
       element={<CatalogEntityPage />}
