@@ -254,7 +254,7 @@ export default function NavbarTop({ children }: any) {
             </Link>
           </Typography>
 
-          {/* <Link href="/"> */}
+          <Link href="/apitools">
           <Button
             id="demo-customized-button"
             // aria-haspopup="true"
@@ -266,7 +266,7 @@ export default function NavbarTop({ children }: any) {
           >
             API Playbook
           </Button>
-          {/* </Link> */}
+          </Link>
 
           <Link href="/">
             <Button
