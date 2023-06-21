@@ -146,7 +146,7 @@ The example flow below validates the users username and password and enrolls the
               <CardActionArea>
                 <CardContent>
                   <div >
-                  <ReactMarkdown  children={data.content.toString()} />
+                  <ReactMarkdown  children={data.content} />
                     
                   </div>
                 </CardContent>
