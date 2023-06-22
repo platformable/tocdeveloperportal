@@ -19,6 +19,7 @@ import { Tools } from '../../json/tools';
 import { InfoCard } from '@backstage/core-components';
 import { techdocsModuleAddonsContribPlugin } from '@backstage/plugin-techdocs-module-addons-contrib';
 import './ApiToolsPage.css'
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -61,7 +62,12 @@ export interface IApiTool  {
 
 export default function page() {
   let { companyName } = useParams();
-
+  useEffect(() => {
+    const links = document.querySelectorAll('.markdown p a')
+    links.forEach(link => {
+      link.setAttribute('target', '_blank')
+    });
+  }, []);
 //   const Tools = [
 //     {
 //       name: 'Stoplight',
@@ -121,7 +127,7 @@ export default function page() {
   
   return (
     <Container maxWidth={'xl'} classes={{}}>
-      <base target="_blank" />
+      {/* <base target="_blank" /> */}
       <div
         className={classes.root}
         style={{ marginTop: 30, marginBottom: 100, paddingBottom: 100 }}
