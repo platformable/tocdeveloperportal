@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Routes, Route, useParams } from 'react-router-dom';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -14,8 +14,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
 import ReactMarkdown from 'react-markdown';
+import { Tools } from '../../json/tools';
+import { InfoCard } from '@backstage/core-components';
+import { techdocsModuleAddonsContribPlugin } from '@backstage/plugin-techdocs-module-addons-contrib';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,86 +25,168 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       img:{
         maxWidth:'100%'
-      }
-    
+      },
     },
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    card: {
+      padding: '0.75rem'
+    },
+    markdown: {
+      whiteSpace: 'pre-wrap'
+    }
     
   }),
 );
+export interface IApiTool  {
+  name: string;
+  description: string;
+  image: string;
+  details: {
+      categories: string[];
+      links: Array<{sourceName: string, url: string;}>;
+      supportedBy: string[];
+  },
+  releases: Array<{version: string, releaseDate: string}>
+  content: string
+}
+
+
+
+
+
 
 export default function page() {
   let { companyName } = useParams();
 
-  console.log('userid', companyName);
+  const Tools = [
+    {
+      name: 'Stoplight',
+      description: 'Design first, Develop Better',
+      image: 'https://res.cloudinary.com/platformable/image/upload/v1687341510/internaldevportal/spotlight/rq7iui3t9b3hcf4a3bru.jpg',
+      details: {
+          categories: ['API','Design','API Documentation'],
+          links: [
+            {
+                sourceName: 'Github',
+                url: 'https://github.com/Midships/digital-txn-signing'
+            }
+            //...more links
+          ],
+          supportedBy: ['Security']
+      },
+      releases: [
+          {
+              version: '0.0.0',
+              releaseDate: 'May 2023' 
+          }
+      ],
+      content: `
+# Include the next code under metadata -> annotations:
+\n![Drag Racing](https://raw.githubusercontent.com/Midships/digital-txn-signing/master/images/passwordless_enroll.png)
+\n
+Create a “/docs” folder in template root directory and create a index.md. You can use this as starter:
+\n
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu mi, euismod non sagittis ac, fringilla non diam. Phasellus suscipit fringilla venenatis. Morbi mi libero, dictum ut purus id, luctus consectetur turpis. Nullam eu nisi et ante commodo hendrerit. Nulla consequat ipsum eu felis suscipit, ultrices viverra nibh maximus. Curabitur mauris mauris, scelerisque sit amet suscipit a, suscipit quis libero. Pellentesque elementum pulvinar metus laoreet eleifend.
+\n
+Nullam feugiat nisi eget placerat consectetur. In hac habitasse platea dictumst. Fusce at dui laoreet, molestie ex a, consequat sapien. Proin eget lectus rutrum, viverra enim a, venenatis mauris. Proin nec tortor in lacus sollicitudin viverra. Duis eget dui pulvinar, vehicula dui id, scelerisque lorem. Proin non mauris vel eros bibendum tempor eu quis ipsum. Praesent faucibus ex sed purus bibendum, a varius enim hendrerit. Fusce sed est et lorem ultricies tincidunt. Pellentesque dolor eros, imperdiet at nunc at, posuere elementum enim. Sed mauris augue, maximus at imperdiet vel, pharetra nec dolor. Aliquam vitae sem cursus, ornare libero a, tempus metus. Quisque in est in mi gravida condimentum. Suspendisse vehicula tempus pellentesque.
+\n
+# Our contact details
+Steps:
+
+1. Create [yaml file](https://github.com/leoncan122/followMe/blob/master/apis/openapi-example.yaml) to create the entitie and store in local folder or github
+2. Define url or file path at Location's section in app-config.yaml
+
+### For any additional support please contact Midships using the following channels:
+
+Website: www.midships.io\n
+Email: support@midships.io / sales@midships.io
+\n
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=7rgvapDYPo0)
+\n
+
+
+      `
+    },
+  ];
+
+  const data: IApiTool = useMemo(() => Tools.find(tool => tool.name === companyName), [companyName])!
+
+  console.log('userid', data);
   const classes = useStyles();
 
-  const markdown = `# Design, Document & Build APIs Faster**.
-  A set of authentication trees that enable native Digital Transaction Signing on ForgeRock's Identity Platform 7.x and ForgeRock Identity Cloud. Please contact us at sales@midships.io for further details of our solution.
+const markdown = `# **Design, Document & Build APIs Faster**.
+A set of authentication trees that enable native Digital Transaction Signing on ForgeRock's Identity Platform 7.x and ForgeRock Identity Cloud. Please contact us at sales@midships.io for further details of our solution.
 
-  The Midships’ Digital transaction signing solution can be used by those customers looking to introduce non-repudiation across transactions e.g. payments, changes to sensitive details and/or to comply with regulatory standards such as MAS 14.2.3 and MAS 14.2.4 TRM-Guidelines-18-January-2021.pdf (mas.gov.sg):
-  
-  14.2.3 The FI should implement transaction-signing (e.g. digital signatures) for authorising high-risk activities to protect the integrity of customer accounts’ data and transaction details. High-risk activities include changes to sensitive customer data (e.g. customer office and home address, email and telephone contact details), registration of third party payee details, high value funds transfers and revision of funds transfer limits.
-  
-  14.2.4 Besides login and transaction-signing for high-risk activities, the FI may implement appropriate risk-based or adaptive authentication that presents customers with authentication options that are commensurate with the risk level of the transaction and sensitivity of the data.
-  
-  This solution does not use any third-party tooling or services and is self-contained within Access Manager (deployed via scripted authentication trees). It is compatible with both the self-managed ForgeRock stack and ForgeRock Identity Cloud. It integrates with ForgeRock’s out-of-the-box passwordless solution and comes with a FIDO compliant passwordless solution for any customer not currently using the ForgeROck SDK.
-  
-  The solution uses the customer’s private key (held on the client) to sign the transaction details. The signed transaction is forwarded to ForgeRock AM. ForgeRock AM validates the signature (using the public key) and creates a one time token containing the key transaction details (customisable). This one time token is returned to the client.
-  
-  Midships also provides an offline version where the client does not have internet access.
-  
-  Please contact us at sales@midships.io for further details of our solution and how it can be customised to meet your specific requirements.
-  
-  Our contact details
-  Website: www.midships.io
-  Email: support@midships.io / sales@midships.io
-  Usage
-  To deploy these trees in Identity Cloud, download the .json tree files provided by Midships. Next, import the .json files individually from Journeys -> Import.
-  
-  If you'd like to import the trees programatically in an on-premise or Identity Cloud deployment you can follow the instructions mentioned below for each journey using the AM-treetool or the newest version, Frodo.
-  
-  Midships passwordless registration tree
-  This tree is used to enroll your device to your profile and store the public key information along with the device metadata that will later be used for passwordless login and doing digital transactions. As part of the device enrollment process, user will be prompted to introduce his password before the device gets enrolled in his profile. At the end of the device enrollment process, the tree will also generate a symmetric key secret (ktp) that can be used for the Midships caller verification trees. The tree is composed by the following nodes:
-  
-  Active session check - Script which will check if user has provided existing session token.
-  Get Session data - If user has submitted an existing session token, will retrieve the session details.
-  Username collector - Collects username from user if unable to retrieve from provided session token.
-  Password collector - Collects password from user as a second factor before enrolling the device.
-  Data Store Decision - Validates username+password combination against the configured realm data store.
-  Device Enroll - FIDO2 compliant node use to register the user device metadata along with the public key for passwordless. Only used if the user calling the tree has not enrolled his device as part of the passwordless registration tree. See more here.
-  Generate and store ktp - Will randomly generate a ktp secret under frIndexedString1 user attribute. For on premise deployments, this can be changed to a custom attribute name in the associated node script.
-  Midships passwordless login tree
-  The tree is composed by the following nodes:
-  
-  Active session check - Script which will check if user has provided existing session token.
-  Get Session data - If user has submitted an existing session token, will retrieve the session details.
-  Username collector - Collects username from user if unable to retrieve from provided session token.
-  Password collector - Collects password from user as a second factor before enrolling the device if not enrolled yet.
-  Data Store Decision - Validates username+password combination against the configured realm data store if device has not been enrolled yet.
-  Device Enroll - FIDO2 compliant node use to register the user device metadata along with the public key for passwordless. Only used if the user calling the tree has not enrolled his device as part of the passwordless registration tree. See more here.
-  Device Login - FIDO2 compliant node use to login the user via passwordless. See more here.
-  Generate and store ktp - Will randomly generate a ktp secret under frIndexedString1 user attribute. For on premise deployments, this can be changed to a custom attribute name in the associated node script. Only used if device has not been enrolled yet.
-  Midships Digital transaction signing login tree
-  The tree is composed by the following nodes:
-  
-  Active session check - Script which will check if user has provided existing session token.
-  Get Session data - If user has submitted an existing session token, will retrieve the session details.
-  Username collector - Collects username from user if unable to retrieve from provided session token.
-  Collect payment details - This node will collect the payment details, including the amount and beneficiary of the transaction.
-  Device Login - FIDO2 compliant node use to login the user via passwordless. See more here.
-  Set beneficiary - Will store the beneficiary of the transaction in the session token. This information will be injected in the access token generated as part of the authorization process.
-  Set amount - Will store the amount of the transaction in the session token. This information will be injected in the access token generated as part of the authorization process.
-  Example Flow 1 - Passwordless registration
-  The example flow below validates the users username and password and enrolls the device under his profile for passwordless login. To deploy this flow via the AM-treetool, run cat Treetool/passwordlessEnroll.json | amtree.sh -i verify -h https://{{AM_Domain}} -u amadmin -p {{admin_password}}.
-  
-  ![Drag Racing](https://raw.githubusercontent.com/Midships/digital-txn-signing/master/images/passwordless_enroll.png)
-    `;
+The Midships’ Digital transaction signing solution can be used by those customers looking to introduce non-repudiation across transactions e.g. payments, changes to sensitive details and/or to comply with regulatory standards such as MAS 14.2.3 and MAS 14.2.4 TRM-Guidelines-18-January-2021.pdf (mas.gov.sg):
 
+14.2.3 The FI should implement transaction-signing (e.g. digital signatures) for authorising high-risk activities to protect the integrity of customer accounts’ data and transaction details. High-risk activities include changes to sensitive customer data (e.g. customer office and home address, email and telephone contact details), registration of third party payee details, high value funds transfers and revision of funds transfer limits.
+
+14.2.4 Besides login and transaction-signing for high-risk activities, the FI may implement appropriate risk-based or adaptive authentication that presents customers with authentication options that are commensurate with the risk level of the transaction and sensitivity of the data.
+
+This solution does not use any third-party tooling or services and is self-contained within Access Manager (deployed via scripted authentication trees). It is compatible with both the self-managed ForgeRock stack and ForgeRock Identity Cloud. It integrates with ForgeRock’s out-of-the-box passwordless solution and comes with a FIDO compliant passwordless solution for any customer not currently using the ForgeROck SDK.
+
+The solution uses the customer’s private key (held on the client) to sign the transaction details. The signed transaction is forwarded to ForgeRock AM. ForgeRock AM validates the signature (using the public key) and creates a one time token containing the key transaction details (customisable). This one time token is returned to the client.
+
+Midships also provides an offline version where the client does not have internet access.
+
+Please contact us at sales@midships.io for further details of our solution and how it can be customised to meet your specific requirements.
+
+Our contact details
+Website: www.midships.io
+Email: support@midships.io / sales@midships.io
+Usage
+To deploy these trees in Identity Cloud, download the .json tree files provided by Midships. Next, import the .json files individually from Journeys -> Import.
+
+If you'd like to import the trees programatically in an on-premise or Identity Cloud deployment you can follow the instructions mentioned below for each journey using the AM-treetool or the newest version, Frodo.
+
+Midships passwordless registration tree
+This tree is used to enroll your device to your profile and store the public key information along with the device metadata that will later be used for passwordless login and doing digital transactions. As part of the device enrollment process, user will be prompted to introduce his password before the device gets enrolled in his profile. At the end of the device enrollment process, the tree will also generate a symmetric key secret (ktp) that can be used for the Midships caller verification trees. The tree is composed by the following nodes:
+
+Active session check - Script which will check if user has provided existing session token.
+Get Session data - If user has submitted an existing session token, will retrieve the session details.
+Username collector - Collects username from user if unable to retrieve from provided session token.
+Password collector - Collects password from user as a second factor before enrolling the device.
+Data Store Decision - Validates username+password combination against the configured realm data store.
+Device Enroll - FIDO2 compliant node use to register the user device metadata along with the public key for passwordless. Only used if the user calling the tree has not enrolled his device as part of the passwordless registration tree. See more here.
+Generate and store ktp - Will randomly generate a ktp secret under frIndexedString1 user attribute. For on premise deployments, this can be changed to a custom attribute name in the associated node script.
+Midships passwordless login tree
+The tree is composed by the following nodes:
+
+Active session check - Script which will check if user has provided existing session token.
+Get Session data - If user has submitted an existing session token, will retrieve the session details.
+Username collector - Collects username from user if unable to retrieve from provided session token.
+Password collector - Collects password from user as a second factor before enrolling the device if not enrolled yet.
+Data Store Decision - Validates username+password combination against the configured realm data store if device has not been enrolled yet.
+Device Enroll - FIDO2 compliant node use to register the user device metadata along with the public key for passwordless. Only used if the user calling the tree has not enrolled his device as part of the passwordless registration tree. See more here.
+Device Login - FIDO2 compliant node use to login the user via passwordless. See more here.
+Generate and store ktp - Will randomly generate a ktp secret under frIndexedString1 user attribute. For on premise deployments, this can be changed to a custom attribute name in the associated node script. Only used if device has not been enrolled yet.
+Midships Digital transaction signing login tree
+The tree is composed by the following nodes:
+
+Active session check - Script which will check if user has provided existing session token.
+Get Session data - If user has submitted an existing session token, will retrieve the session details.
+Username collector - Collects username from user if unable to retrieve from provided session token.
+Collect payment details - This node will collect the payment details, including the amount and beneficiary of the transaction.
+Device Login - FIDO2 compliant node use to login the user via passwordless. See more here.
+Set beneficiary - Will store the beneficiary of the transaction in the session token. This information will be injected in the access token generated as part of the authorization process.
+Set amount - Will store the amount of the transaction in the session token. This information will be injected in the access token generated as part of the authorization process.
+Example Flow 1 - Passwordless registration
+The example flow below validates the users username and password and enrolls the device under his profile for passwordless login. To deploy this flow via the AM-treetool, run cat Treetool/passwordlessEnroll.json | amtree.sh -i verify -h https://{{AM_Domain}} -u amadmin -p {{admin_password}}.
+
+![Drag Racing](https://raw.githubusercontent.com/Midships/digital-txn-signing/master/images/passwordless_enroll.png)
+  `
+
+
+  
+console.log("markdown", typeof markdown)
+
+console.log("tools",  Tools[0].content)
+  
   return (
     <Container maxWidth={'xl'} classes={{}}>
       <div
@@ -117,25 +201,26 @@ export default function page() {
           />
         </div>
         <h1>
-          <strong>{companyName}</strong>
+          <strong>{data?.name}</strong>
         </h1>
-        <h3>Design first, Develop Better</h3>
+        <h3>{data?.description}</h3>
 
         <Grid container spacing={4}>
           <Grid item xs={8}>
             <Card className={classes.root}>
-              <CardActionArea>
+             
                 <CardContent>
-                  <div>
-                  <ReactMarkdown children={markdown} />
+                  <div >
+                  <ReactMarkdown  children={Tools[0].content} />
+                    
                   </div>
                 </CardContent>
-              </CardActionArea>
+            
             </Card>
           </Grid>
           <Grid item xs={4}>
             <Grid spacing={5}>
-              <Card className={classes.root}>
+              <Card className={classes.card}>
                 <Box
                   fontWeight="fontWeightBold"
                   m={1}
@@ -151,7 +236,11 @@ export default function page() {
                     Categories
                   </Box>
                   <ul>
-                    <li>Security</li>
+                    {data.details.categories.map(category => (
+                      <li>
+                        {category}
+                      </li>
+                    ))}
                   </ul>
 
                   <Box fontSize="h6.fontSize" fontWeight="fontWeightBold">
@@ -165,11 +254,13 @@ export default function page() {
                     Repository
                   </Box>
                   <ul>
-                    <li>
-                      <a href="https://github.com/Midships/digital-txn-signing">
-                        https://github.com/Midships/digital-txn-signing
+                    {data?.details.links.map(link => (
+                      <li>
+                      <a href={link.url}>
+                        {link.sourceName}
                       </a>
                     </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
@@ -178,7 +269,7 @@ export default function page() {
             <br />
 
             <Grid>
-              <Card className={classes.root}>
+              <Card className={classes.card}>
                 <Box
                   fontWeight="fontWeightBold"
                   m={1}
@@ -190,7 +281,12 @@ export default function page() {
                   RELEASES
                 </Box>
                 <CardContent>
-                  <Box>No releases</Box>
+                  <Box>{data.releases ? 
+                    data?.releases.map(release => (
+                      `version: ${release.version}        date: ${release.releaseDate}`
+                    )) : 
+                    'No Releases'
+                    }</Box>
                 </CardContent>
               </Card>
             </Grid>

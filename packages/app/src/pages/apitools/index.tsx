@@ -12,7 +12,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-//import File from './file.json'
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Index() {
   const classes = useStyles();
-  let companyName = 'Spotlight';
+  let companyName = 'Stoplight';
 
   //const [data,setData]=useState(File)
 
