@@ -5,6 +5,10 @@ app:
 organization:
   name: My Company
 
+  csp:
+    upgrade-insecure-requests: false
+    connect-src: ["'self'", 'http:', 'https:']
+
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
   # See https://backstage.io/docs/auth/service-to-service-auth for
@@ -18,6 +22,7 @@ backend:
     # Uncomment the following host directive to bind to specific interfaces
     # host: 127.0.0.1
   csp:
+    upgrade-insecure-requests: false
     connect-src: ["'self'", 'http:', 'https:']
     # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
     # Default Helmet Content-Security-Policy values can be removed by setting the key to false
@@ -126,6 +131,3 @@ catalog:
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
     #   rules:
     #     - allow: [User, Group]
-csp:
-    upgrade-insecure-requests: false
-    connect-src: ["'self'", 'http:', 'https:']

@@ -12,6 +12,9 @@ backend:
   # The listener can also be expressed as a single <host>:<port> string. In this case we bind to
   # all interfaces, the most permissive setting. The right value depends on your specific deployment.
   listen: ':7007'
+  csp:
+    upgrade-insecure-requests: false
+    connect-src: ["'self'", 'http:', 'https:']
 
   # config options: https://node-postgres.com/api/client
   database:
@@ -45,8 +48,3 @@ techdocs:
     runIn: 'local' # Alternatives - 'local'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
-csp:
-    upgrade-insecure-requests: false
-    connect-src: ["'self'", 'http:', 'https:']
-    # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
-    # Default Helmet Content-Security-Policy values can be removed by setting the key to false
