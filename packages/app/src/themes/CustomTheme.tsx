@@ -16,7 +16,7 @@ const createCustomThemeOverrides = (
       },
       BackstagePage: {
         root: {
-          overflowY: "none"
+          overflowY: "revert"
         }
       }
     };
