@@ -15,6 +15,16 @@ backend:
   csp:
     upgrade-insecure-requests: false
     connect-src: ["'self'", 'http:', 'https:']
+    script-src:
+      [
+        "'self'",
+        "'unsafe-eval'",
+        '*.cloudinary.com',
+        '*.youtube.com',
+        '*.githubusercontent.com'
+      ]
+    img-src: ["'self'", 'data:', '*.cloudinary.com','*.githubusercontent.com']
+    media-src: ["'self'", 'data:', '*.cloudinary.com','*.youtube.com','*.githubusercontent.com']
 
   # config options: https://node-postgres.com/api/client
   database:

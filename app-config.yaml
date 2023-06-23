@@ -5,9 +5,7 @@ app:
 organization:
   name: My Company
 
-  csp:
-    upgrade-insecure-requests: false
-    connect-src: ["'self'", 'http:', 'https:']
+  
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -24,8 +22,16 @@ backend:
   csp:
     upgrade-insecure-requests: false
     connect-src: ["'self'", 'http:', 'https:']
-    # Content-Security-Policy directives follow the Helmet format: https://helmetjs.github.io/#reference
-    # Default Helmet Content-Security-Policy values can be removed by setting the key to false
+    script-src:
+      [
+        "'self'",
+        "'unsafe-eval'",
+        '*.cloudinary.com',
+        '*.youtube.com',
+        '*.githubusercontent.com'
+      ]
+    img-src: ["'self'", 'data:', '*.cloudinary.com','*.githubusercontent.com','*.youtube.com']
+    media-src: ["'self'", 'data:', '*.cloudinary.com','*.youtube.com','*.githubusercontent.com']
   cors:
     origin: http://localhost:3000
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
