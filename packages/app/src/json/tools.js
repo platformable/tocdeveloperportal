@@ -41,6 +41,11 @@ Steps:
 Website: www.midships.io\n
 Email: support@midships.io / sales@midships.io
 \n
+\`\`\`js
+ function () {
+    alert('How to create a code snippet')
+ }
+\`\`\`
 
 [![Watch the video](https://img.youtube.com/vi/7rgvapDYPo0/maxresdefault.jpg)](https://www.youtube.com/watch?v=7rgvapDYPo0)
 \n

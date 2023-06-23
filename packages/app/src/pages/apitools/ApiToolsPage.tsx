@@ -1,11 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
+import React, { useEffect, useMemo } from 'react';
+import {  useParams } from 'react-router-dom';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,8 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ReactMarkdown from 'react-markdown';
 import { Tools } from '../../json/tools';
-import { InfoCard } from '@backstage/core-components';
-import { techdocsModuleAddonsContribPlugin } from '@backstage/plugin-techdocs-module-addons-contrib';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import './ApiToolsPage.css'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -54,9 +51,6 @@ export interface IApiTool  {
   releases: Array<{version: string, releaseDate: string}>
   content: string
 }
-
-
-
 
 
 
@@ -100,10 +94,25 @@ export default function page() {
             <Card className={classes.root}>
              
                 <CardContent>
-                  <div >
-                  <ReactMarkdown className='markdown' children={data.content} />
-                    
-                  </div>
+                <ReactMarkdown 
+                  className='markdown'
+                  components={{
+                    code({children,className}) {
+                      const match = /language-(\w+)/.exec(className || "");
+                      return (
+                        <SyntaxHighlighter
+                            style={materialDark}
+                            children={String(children[0])}
+                            language={match![1]}
+                        />
+                    );
+                    }
+                  }}
+                   >
+                    {data.content}
+                  {/* Reference  https://codesandbox.io/s/react-markdown-typescript-syntax-highlight-00uz6?file=/src/App.tsx */}
+                  </ReactMarkdown>
+
                 </CardContent>
             
             </Card>
