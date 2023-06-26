@@ -107,12 +107,7 @@ function CustomizedMenus({ title }: CustomMenuWithProps) {
           },
         }}
       >
-        <Link href="/api-docs">
-          <MenuItem onClick={handleClose} disableRipple>
-            {/* <EditIcon /> */}
-            API
-          </MenuItem>
-        </Link>
+  
         <Link href="/catalog">
           <MenuItem onClick={handleClose} disableRipple>
             {/* <FileCopyIcon /> */}
@@ -212,9 +207,7 @@ const useStyles = makeStyles(theme => ({
 export default function NavbarTop({ children }: any) {
   const classes = useStyles();
   const {state, toggleModal, setOpen} = useSearchModal()
-  React.useEffect(() => {
-    console.log("search sstate", state)
-  }, [state])
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="transparent">
@@ -268,7 +261,7 @@ export default function NavbarTop({ children }: any) {
           </Button>
           </Link>
 
-          <Link href="/">
+          <Link href="/api-docs">
             <Button
               id="demo-customized-button"
               aria-haspopup="true"
@@ -278,7 +271,7 @@ export default function NavbarTop({ children }: any) {
               // onClick={handleClick}
               // endIcon={<KeyboardArrowDownIcon />}
             >
-              API Docs
+              APIs
             </Button>
           </Link>
 

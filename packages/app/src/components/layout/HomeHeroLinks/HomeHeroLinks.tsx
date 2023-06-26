@@ -31,9 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 const links = [
-    {icon: '/docs.svg', href: '/docs', text: 'Docs'},
-    {icon: '/api.svg', href: '/api-docs', text: 'API'},
-    {icon: '/developer.svg', href: '/catalog', text: 'Developers'},
+    {icon: '/docs.svg', href: '/apitools', text: 'API Playbook'},
+    {icon: '/api.svg', href: '/api-docs', text: `APIs`},
+    {icon: '/api.svg', href: '/docs', text: `Docs`},
+    {icon: '/developer.svg', href: '/catalog', text: 'Developers (TBC)'},
 
 ]
 export default function HomeHeroLinks() {
