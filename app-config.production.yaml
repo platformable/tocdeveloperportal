@@ -23,7 +23,7 @@ backend:
         '*.youtube.com',
         '*.githubusercontent.com'
       ]
-    img-src: ["'self'", 'data:', '*.cloudinary.com','*.githubusercontent.com']
+    img-src: ["'self'", 'data:', '*.cloudinary.com','*.githubusercontent.com','*.youtube.com']
     media-src: ["'self'", 'data:', '*.cloudinary.com','*.youtube.com','*.githubusercontent.com']
 
   # config options: https://node-postgres.com/api/client
