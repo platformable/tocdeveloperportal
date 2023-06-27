@@ -40,6 +40,7 @@ import { customTheme } from './themes/CustomTheme';
 
 import ApiTools from './pages/apitools'
 import ApiToolsPage from './pages/apitools/ApiToolsPage'
+import { CustomCatalogPage } from './components/catalog/CustomCatalogPage';
 
 const app = createApp({
   apis,
@@ -83,7 +84,8 @@ const routes = (
       }}
     />
     {/* <Route path="/" element={<Navigate to="catalog" />} /> */}
-    <Route path="/catalog" element={<CatalogIndexPage />} />
+    <Route path="/catalog" element={<CatalogIndexPage  initiallySelectedFilter='all'/>} />
+
     <Route path="/apitools" element={<ApiTools />} />
     <Route path="/apitools/tool/:companyName" element={<ApiToolsPage />} />
     <Route
