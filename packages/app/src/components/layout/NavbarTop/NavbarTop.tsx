@@ -247,7 +247,7 @@ export default function NavbarTop({ children }: any) {
             </Link>
           </Typography>
 
-          <Link href="/apitools">
+          <Link href="/docs">
           <Button
             id="demo-customized-button"
             // aria-haspopup="true"
@@ -275,7 +275,21 @@ export default function NavbarTop({ children }: any) {
             </Button>
           </Link>
 
-          <CustomizedMenus title="Catalog" />
+          <Link href="/apitools">
+            <Button
+              id="demo-customized-button"
+              aria-haspopup="true"
+              //   variant="contained"
+              color="primary"
+              disableElevation
+              // onClick={handleClick}
+              // endIcon={<KeyboardArrowDownIcon />}
+            >
+              Tools
+            </Button>
+          </Link>
+
+          {/* <CustomizedMenus title="Catalog" /> */}
             <SearchModalProvider >
 
             <SidebarSearchModal>
