@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: '10px',
       // backgroundColor: '#2d1d86',
       textAlign: 'center',
-      display: "flex",
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      flexDirection: 'column'
+      flexDirection: 'column',
     },
     control: {
       padding: theme.spacing(2),
@@ -29,32 +29,36 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
 const links = [
-    {icon: '/docs.svg', href: '/apitools', text: 'API Playbook'},
-    {icon: '/api.svg', href: '/api-docs', text: `APIs`},
-    {icon: '/api.svg', href: '/docs', text: `Docs`},
-    {icon: '/developer.svg', href: '/catalog', text: 'Developers (TBC)'},
-
-]
+  { icon: '/api.svg', href: '/docs', text: `Api Playbook` },
+  { icon: '/api.svg', href: '/api-docs', text: `APIs` },
+  { icon: '/docs.svg', href: '/apitools', text: 'Tools' },
+  { icon: '/developer.svg', href: '/catalog', text: 'Developers (TBC)' },
+];
 export default function HomeHeroLinks() {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.root} spacing={2}>
       <Grid item xs={12}>
-        <Grid container justifyContent="center"  spacing={5}>
-          {links && links!.map((value, index) => (
-            <Grid key={index} item xs={12} md={6} lg={3}  >
-              <Link to={value.href}>
-              <Paper className={classes.paper} >
-                {/* <img src={value.icon} alt="icon"/> */}
-                <img src={value.icon} alt={`${value.text} icon`} style={{paddingTop:20}} width={70}/>
-                <h3>{value.text}</h3>
-              </Paper>
-              </Link>
-            </Grid>
-          ))}
+        <Grid container justifyContent="center" spacing={5}>
+          {links &&
+            links!.map((value, index) => (
+              <Grid key={index} item xs={12} md={6} lg={3}>
+                <Link to={value.href}>
+                  <Paper className={classes.paper}>
+                    {/* <img src={value.icon} alt="icon"/> */}
+                    <img
+                      src={value.icon}
+                      alt={`${value.text} icon`}
+                      style={{ paddingTop: 20 }}
+                      width={70}
+                    />
+                    <h3>{value.text}</h3>
+                  </Paper>
+                </Link>
+              </Grid>
+            ))}
         </Grid>
       </Grid>
     </Grid>
