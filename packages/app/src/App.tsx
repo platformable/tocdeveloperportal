@@ -83,7 +83,8 @@ const routes = (
       }}
     />
     {/* <Route path="/" element={<Navigate to="catalog" />} /> */}
-    <Route path="/catalog" element={<CatalogIndexPage />} />
+    <Route path="/catalog" element={<CatalogIndexPage  initiallySelectedFilter='all'/>} />
+
     <Route path="/apitools" element={<ApiTools />} />
     <Route path="/apitools/tool/:companyName" element={<ApiToolsPage />} />
     <Route
