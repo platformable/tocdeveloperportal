@@ -40,7 +40,6 @@ import { customTheme } from './themes/CustomTheme';
 
 import ApiTools from './pages/apitools'
 import ApiToolsPage from './pages/apitools/ApiToolsPage'
-import { CustomCatalogPage } from './components/catalog/CustomCatalogPage';
 
 const app = createApp({
   apis,
