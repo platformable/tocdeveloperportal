@@ -163,6 +163,9 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
     },
   },
+  button: {
+    textTransform: 'none',
+  },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -254,6 +257,7 @@ export default function NavbarTop({ children }: any) {
             //   variant="contained"
             color="primary"
             disableElevation
+            className={classes.button}
             // onClick={handleClick}
             // endIcon={<KeyboardArrowDownIcon />}
           >
@@ -268,6 +272,7 @@ export default function NavbarTop({ children }: any) {
               //   variant="contained"
               color="primary"
               disableElevation
+              className={classes.button}
               // onClick={handleClick}
               // endIcon={<KeyboardArrowDownIcon />}
             >
@@ -282,6 +287,7 @@ export default function NavbarTop({ children }: any) {
               //   variant="contained"
               color="primary"
               disableElevation
+              className={classes.button}
               // onClick={handleClick}
               // endIcon={<KeyboardArrowDownIcon />}
             >
